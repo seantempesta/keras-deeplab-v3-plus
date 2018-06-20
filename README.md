@@ -1,3 +1,44 @@
+# NOTES For CoreMLTools Bug 
+To reproduce the error, do the following:
+- Clone this repo
+- Run `python convert-to-coreml.py`
+- Run `/Applications/Xcode.app/Contents/Developer/usr/bin/coremlc compile DeeplabMobilenet.mlmodel compile-output`
+
+# Problem seems to be:
+That the output shape for the custom layer (Bilinear Upsampling) is returning (-1,-1,-1) 
+```
+Neural Network compiler 254: 500 , name = bilinear_upsampling_1, output shape : (C,H,W) = (-1, -1, -1) 
+```
+Which is later breaking the `concatenate_1` layer as the shapes do not align.  The Keras model summary show the correct output shapes:
+
+```
+...
+activation_1 (Activation)       (None, 1, 1, 256)    0           image_pooling_BN[0][0]           
+__________________________________________________________________________________________________
+aspp0_BN (BatchNormalization)   (None, 64, 64, 256)  1024        aspp0[0][0]                      
+__________________________________________________________________________________________________
+bilinear_upsampling_1 (Bilinear (None, 64, 64, 256)  0           activation_1[0][0]               
+__________________________________________________________________________________________________
+aspp0_activation (Activation)   (None, 64, 64, 256)  0           aspp0_BN[0][0]                   
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 64, 64, 512)  0           bilinear_upsampling_1[0][0]      
+                                                                 aspp0_activation[0][0]           
+__________________________________________________________________________________________________
+concat_projection (Conv2D)      (None, 64, 64, 256)  131072      concatenate_1[0][0]              
+__________________________________________________________________________________________________
+concat_projection_BN (BatchNorm (None, 64, 64, 256)  1024        concat_projection[0][0]          
+__________________________________________________________________________________________________
+activation_2 (Activation)       (None, 64, 64, 256)  0           concat_projection_BN[0][0]       
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 64, 64, 256)  0           activation_2[0][0]               
+__________________________________________________________________________________________________
+logits_semantic (Conv2D)        (None, 64, 64, 21)   5397        dropout_1[0][0]                  
+__________________________________________________________________________________________________
+bilinear_upsampling_2 (Bilinear (None, 512, 512, 21) 0           logits_semantic[0][0]            
+==================================================================================================
+```
+
+
 # Keras implementation of Deeplabv3+
 DeepLab is a state-of-art deep learning model for semantic image segmentation.  
 
