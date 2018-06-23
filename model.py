@@ -39,6 +39,7 @@ from keras.layers import Conv2D
 from keras.layers import DepthwiseConv2D
 from keras.layers import ZeroPadding2D
 from keras.layers import AveragePooling2D
+from keras.layers import UpSampling2D
 from keras.engine import Layer
 from keras.engine import InputSpec
 from keras.engine.topology import get_source_inputs
@@ -439,7 +440,8 @@ def Deeplabv3(weights='pascal_voc', input_tensor=None, input_shape=(512, 512, 3)
                 use_bias=False, name='image_pooling')(b4)
     b4 = BatchNormalization(name='image_pooling_BN', epsilon=1e-5)(b4)
     b4 = Activation('relu')(b4)
-    b4 = BilinearUpsampling((int(np.ceil(input_shape[0] / OS)), int(np.ceil(input_shape[1] / OS))))(b4)
+    #b4 = BilinearUpsampling((int(np.ceil(input_shape[0] / OS)), int(np.ceil(input_shape[1] / OS))))(b4)
+    b4 = UpSampling2D(size=(int(np.ceil(input_shape[0] / OS)), int(np.ceil(input_shape[1] / OS))), data_format="channels_last")(b4)
 
     # simple 1x1
     b0 = Conv2D(256, (1, 1), padding='same', use_bias=False, name='aspp0')(x)
@@ -488,13 +490,13 @@ def Deeplabv3(weights='pascal_voc', input_tensor=None, input_shape=(512, 512, 3)
                        depth_activation=True, epsilon=1e-5)
 
     # you can use it with arbitary number of classes
-    if classes == 21:
-        last_layer_name = 'logits_semantic'
-    else:
-        last_layer_name = 'custom_logits_semantic'
+    last_layer_name = 'logits_semantic'
 
     x = Conv2D(classes, (1, 1), padding='same', name=last_layer_name)(x)
-    x = BilinearUpsampling(output_size=(input_shape[0], input_shape[1]))(x)
+    #x = BilinearUpsampling(output_size=(input_shape[0], input_shape[1]))(x)
+    prev_shape = (int(np.ceil(input_shape[0] / OS)), int(np.ceil(input_shape[1] / OS)))
+    upscale_size = (int(input_shape[0] / prev_shape[0]), int(input_shape[1] / prev_shape[1]))
+    x = UpSampling2D(size=upscale_size, data_format="channels_last")(x)
 
     # Ensure that the model takes into account
     # any potential predecessors of `input_tensor`.

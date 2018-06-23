@@ -12,8 +12,17 @@
 		1493C2B620DA436F005052C8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1493C2B420DA436F005052C8 /* Main.storyboard */; };
 		1493C2B820DA4371005052C8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1493C2B720DA4371005052C8 /* Assets.xcassets */; };
 		1493C2BB20DA4371005052C8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1493C2B920DA4371005052C8 /* LaunchScreen.storyboard */; };
-		1493C2C320DA46DB005052C8 /* DeeplabMobilenet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1493C2C220DA46DA005052C8 /* DeeplabMobilenet.mlmodel */; };
-		1493C2C520DA471D005052C8 /* BilinearUpsampling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1493C2C420DA471D005052C8 /* BilinearUpsampling.swift */; };
+		14AB703D20DCDAC60039D8ED /* DeepLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14AB703C20DCDAC60039D8ED /* DeepLab.swift */; };
+		14BD35F820DE4B93005A6D66 /* DeeplabMobilenet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35F720DE4B93005A6D66 /* DeeplabMobilenet.mlmodel */; };
+		14BD360320DE4BE4005A6D66 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35FA20DE4BE4005A6D66 /* Math.swift */; };
+		14BD360420DE4BE4005A6D66 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35FB20DE4BE4005A6D66 /* UIImage+CVPixelBuffer.swift */; };
+		14BD360520DE4BE4005A6D66 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35FC20DE4BE4005A6D66 /* Array.swift */; };
+		14BD360620DE4BE4005A6D66 /* Predictions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35FD20DE4BE4005A6D66 /* Predictions.swift */; };
+		14BD360720DE4BE4005A6D66 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35FE20DE4BE4005A6D66 /* UIColor.swift */; };
+		14BD360820DE4BE4005A6D66 /* MultiArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD35FF20DE4BE4005A6D66 /* MultiArray.swift */; };
+		14BD360920DE4BE4005A6D66 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD360020DE4BE4005A6D66 /* CVPixelBuffer+Helpers.swift */; };
+		14BD360A20DE4BE4005A6D66 /* NonMaxSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD360120DE4BE4005A6D66 /* NonMaxSuppression.swift */; };
+		14BD360B20DE4BE4005A6D66 /* MLMultiArray+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14BD360220DE4BE4005A6D66 /* MLMultiArray+Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,8 +33,17 @@
 		1493C2B720DA4371005052C8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1493C2BA20DA4371005052C8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1493C2BC20DA4371005052C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1493C2C220DA46DA005052C8 /* DeeplabMobilenet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DeeplabMobilenet.mlmodel; path = ../../DeeplabMobilenet.mlmodel; sourceTree = "<group>"; };
-		1493C2C420DA471D005052C8 /* BilinearUpsampling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BilinearUpsampling.swift; sourceTree = "<group>"; };
+		14AB703C20DCDAC60039D8ED /* DeepLab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLab.swift; sourceTree = "<group>"; };
+		14BD35F720DE4B93005A6D66 /* DeeplabMobilenet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; name = DeeplabMobilenet.mlmodel; path = ../../DeeplabMobilenet.mlmodel; sourceTree = "<group>"; };
+		14BD35FA20DE4BE4005A6D66 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		14BD35FB20DE4BE4005A6D66 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		14BD35FC20DE4BE4005A6D66 /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		14BD35FD20DE4BE4005A6D66 /* Predictions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Predictions.swift; sourceTree = "<group>"; };
+		14BD35FE20DE4BE4005A6D66 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		14BD35FF20DE4BE4005A6D66 /* MultiArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiArray.swift; sourceTree = "<group>"; };
+		14BD360020DE4BE4005A6D66 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
+		14BD360120DE4BE4005A6D66 /* NonMaxSuppression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NonMaxSuppression.swift; sourceTree = "<group>"; };
+		14BD360220DE4BE4005A6D66 /* MLMultiArray+Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Image.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,14 +78,31 @@
 			children = (
 				1493C2B020DA436F005052C8 /* AppDelegate.swift */,
 				1493C2B220DA436F005052C8 /* ViewController.swift */,
-				1493C2C420DA471D005052C8 /* BilinearUpsampling.swift */,
-				1493C2C220DA46DA005052C8 /* DeeplabMobilenet.mlmodel */,
 				1493C2B420DA436F005052C8 /* Main.storyboard */,
 				1493C2B720DA4371005052C8 /* Assets.xcassets */,
 				1493C2B920DA4371005052C8 /* LaunchScreen.storyboard */,
 				1493C2BC20DA4371005052C8 /* Info.plist */,
+				14BD35F720DE4B93005A6D66 /* DeeplabMobilenet.mlmodel */,
+				14AB703C20DCDAC60039D8ED /* DeepLab.swift */,
+				14BD35F920DE4BE4005A6D66 /* CoreMLHelpers */,
 			);
 			path = DeeplabCoreMLTest;
+			sourceTree = "<group>";
+		};
+		14BD35F920DE4BE4005A6D66 /* CoreMLHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				14BD35FA20DE4BE4005A6D66 /* Math.swift */,
+				14BD35FB20DE4BE4005A6D66 /* UIImage+CVPixelBuffer.swift */,
+				14BD35FC20DE4BE4005A6D66 /* Array.swift */,
+				14BD35FD20DE4BE4005A6D66 /* Predictions.swift */,
+				14BD35FE20DE4BE4005A6D66 /* UIColor.swift */,
+				14BD35FF20DE4BE4005A6D66 /* MultiArray.swift */,
+				14BD360020DE4BE4005A6D66 /* CVPixelBuffer+Helpers.swift */,
+				14BD360120DE4BE4005A6D66 /* NonMaxSuppression.swift */,
+				14BD360220DE4BE4005A6D66 /* MLMultiArray+Image.swift */,
+			);
+			path = CoreMLHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,10 +176,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1493C2C320DA46DB005052C8 /* DeeplabMobilenet.mlmodel in Sources */,
-				1493C2C520DA471D005052C8 /* BilinearUpsampling.swift in Sources */,
+				14BD360620DE4BE4005A6D66 /* Predictions.swift in Sources */,
+				14BD35F820DE4B93005A6D66 /* DeeplabMobilenet.mlmodel in Sources */,
+				14BD360420DE4BE4005A6D66 /* UIImage+CVPixelBuffer.swift in Sources */,
+				14BD360B20DE4BE4005A6D66 /* MLMultiArray+Image.swift in Sources */,
+				14BD360520DE4BE4005A6D66 /* Array.swift in Sources */,
+				14BD360720DE4BE4005A6D66 /* UIColor.swift in Sources */,
+				14AB703D20DCDAC60039D8ED /* DeepLab.swift in Sources */,
 				1493C2B320DA436F005052C8 /* ViewController.swift in Sources */,
+				14BD360920DE4BE4005A6D66 /* CVPixelBuffer+Helpers.swift in Sources */,
+				14BD360820DE4BE4005A6D66 /* MultiArray.swift in Sources */,
 				1493C2B120DA436F005052C8 /* AppDelegate.swift in Sources */,
+				14BD360A20DE4BE4005A6D66 /* NonMaxSuppression.swift in Sources */,
+				14BD360320DE4BE4005A6D66 /* Math.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

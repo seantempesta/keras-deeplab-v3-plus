@@ -1,43 +1,26 @@
-# NOTES For CoreMLTools Bug 
+# First off, many thanks to Matthijs Hollemans!
+He helped me understand what the problem was and suggested the solution I implemented.  
+Check out his awesome tutorials for more information on converting CoreML models!
+
+http://machinethink.net
+
+# NOTES For Converting the Keras MobileNet v2 (Deeplabv3+) model to Coreml
 To reproduce the error, do the following:
 - Clone this repo
+- Run `python extract_weights.py`
+- Run `python load_weights.py`
 - Run `python convert-to-coreml.py`
-- Run `/Applications/Xcode.app/Contents/Developer/usr/bin/coremlc compile DeeplabMobilenet.mlmodel compile-output`
 
-# Problem seems to be:
-That the output shape for the custom layer (Bilinear Upsampling) is returning (-1,-1,-1) 
-```
-Neural Network compiler 254: 500 , name = bilinear_upsampling_1, output shape : (C,H,W) = (-1, -1, -1) 
-```
-Which is later breaking the `concatenate_1` layer as the shapes do not align.  The Keras model summary show the correct output shapes:
+# Yes, I hacked the model a bit
+It turns out CoreML doesn't support fractional (or even uneven upscaling), so I replaced
+the custom BilinearUpsampling layers with normal UpSampling2D layers.  This means that
+you're stuck with generating models that are multiples of 2 and are evenly sized.  But hey, life isn't perfect!
 
-```
-...
-activation_1 (Activation)       (None, 1, 1, 256)    0           image_pooling_BN[0][0]           
-__________________________________________________________________________________________________
-aspp0_BN (BatchNormalization)   (None, 64, 64, 256)  1024        aspp0[0][0]                      
-__________________________________________________________________________________________________
-bilinear_upsampling_1 (Bilinear (None, 64, 64, 256)  0           activation_1[0][0]               
-__________________________________________________________________________________________________
-aspp0_activation (Activation)   (None, 64, 64, 256)  0           aspp0_BN[0][0]                   
-__________________________________________________________________________________________________
-concatenate_1 (Concatenate)     (None, 64, 64, 512)  0           bilinear_upsampling_1[0][0]      
-                                                                 aspp0_activation[0][0]           
-__________________________________________________________________________________________________
-concat_projection (Conv2D)      (None, 64, 64, 256)  131072      concatenate_1[0][0]              
-__________________________________________________________________________________________________
-concat_projection_BN (BatchNorm (None, 64, 64, 256)  1024        concat_projection[0][0]          
-__________________________________________________________________________________________________
-activation_2 (Activation)       (None, 64, 64, 256)  0           concat_projection_BN[0][0]       
-__________________________________________________________________________________________________
-dropout_1 (Dropout)             (None, 64, 64, 256)  0           activation_2[0][0]               
-__________________________________________________________________________________________________
-logits_semantic (Conv2D)        (None, 64, 64, 21)   5397        dropout_1[0][0]                  
-__________________________________________________________________________________________________
-bilinear_upsampling_2 (Bilinear (None, 512, 512, 21) 0           logits_semantic[0][0]            
-==================================================================================================
-```
+# I'm including a sample XCode project showing the model loading and calculating the argmax from the results
+It's not really a complete example, but might help you get started.  Check out this repo for better examples
+on using Apple's Vision methods to predict images.
 
+https://github.com/hollance/YOLO-CoreML-MPSNNGraph
 
 # Keras implementation of Deeplabv3+
 DeepLab is a state-of-art deep learning model for semantic image segmentation.  
